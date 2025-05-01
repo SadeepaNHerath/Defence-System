@@ -8,6 +8,8 @@ import DesignPatern.Observable;
 import DesignPatern.Observer;
 import Utils.UIManager;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
@@ -32,13 +34,79 @@ public class Tank extends javax.swing.JFrame implements Observer{
         control = Observable.getInstance();
         name = "Tank";
         setTitle("Defence System - " + name);
-        setResizable(false);
+        // Change from EXIT_ON_CLOSE to DISPOSE_ON_CLOSE to work with launcher
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(true);
+        
+        // Set appropriate size to ensure all components remain visible
+        setSize(new Dimension(800, 500));
         
         // Apply modern UI styling
         applyUIStyles();
         
         // Create panels for better organization
         createPanels();
+        
+        // Improve text visibility
+        improveTextVisibility();
+        
+        // Optimize component layout for standard window size
+        optimizeComponentLayout();
+    }
+    
+    /**
+     * Improve text visibility across components
+     */
+    private void improveTextVisibility() {
+        // Make button text black for better readability
+        btnShoot.setForeground(Color.BLACK);
+        btnMissile.setForeground(Color.BLACK);
+        btnRotate.setForeground(Color.BLACK);
+        btnRedar.setForeground(Color.BLACK);
+        btnSend.setForeground(Color.BLACK);
+        
+        // Ensure text areas have black text on light background
+        txtInBox.setForeground(Color.BLACK);
+        txtSendBox.setForeground(Color.BLACK);
+        
+        // Make checkbox text more visible with larger, bolder font
+        chckPosition.setForeground(Color.WHITE);
+        
+        // Make labels more visible with higher contrast
+        lblTitle.setForeground(Color.WHITE);
+        lblArea.setForeground(Color.WHITE);
+        lblSoldier.setForeground(Color.WHITE);
+        lblAmmo.setForeground(Color.WHITE);
+        lblFuel.setForeground(Color.WHITE);
+        
+        // Add borders to make areas more distinct
+        scrlInbox.setBorder(BorderFactory.createTitledBorder(
+                BorderFactory.createLineBorder(Color.WHITE, 1), 
+                "Communication Log", 
+                TitledBorder.DEFAULT_JUSTIFICATION, 
+                TitledBorder.DEFAULT_POSITION,
+                new Font("Segoe UI", Font.BOLD, 12),
+                Color.WHITE));
+        
+        scrlSendBox.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+    }
+    
+    /**
+     * Optimize component layout for standard window size
+     */
+    private void optimizeComponentLayout() {
+        // Make the positioning of buttons more organized
+        btnMissile.setBounds(btnMissile.getX(), btnMissile.getY(), 
+                btnMissile.getWidth() + 10, btnMissile.getHeight());
+        btnRotate.setBounds(btnRotate.getX(), btnRotate.getY(),
+                btnRotate.getWidth() + 10, btnRotate.getHeight());
+        
+        // Make the fuel slider more visible
+        sldrFuel.setOpaque(false);
+        sldrFuel.setBackground(new Color(60, 63, 65, 150)); // Semi-transparent background
+        
+        // Improve button sizing for visibility
+        btnSend.setPreferredSize(new Dimension(80, 30));
     }
     
     /**
@@ -105,6 +173,8 @@ public class Tank extends javax.swing.JFrame implements Observer{
                 TitledBorder.DEFAULT_POSITION, 
                 UIManager.SUBTITLE_FONT, Color.WHITE));
         weaponsPanel.setOpaque(false);
+        weaponsPanel.setBounds(5, 90, 310, 80);
+        getContentPane().add(weaponsPanel);
         
         // Create resources panel
         JPanel resourcesPanel = new JPanel();
@@ -114,15 +184,19 @@ public class Tank extends javax.swing.JFrame implements Observer{
                 TitledBorder.DEFAULT_POSITION, 
                 UIManager.SUBTITLE_FONT, Color.WHITE));
         resourcesPanel.setOpaque(false);
+        resourcesPanel.setBounds(420, 60, 200, 100);
+        getContentPane().add(resourcesPanel);
         
         // Create communications panel
         JPanel commsPanel = new JPanel();
         commsPanel.setBorder(BorderFactory.createTitledBorder(
-                UIManager.PANEL_BORDER, "Communications", 
+                UIManager.PANEL_BORDER, "Status", 
                 TitledBorder.DEFAULT_JUSTIFICATION, 
                 TitledBorder.DEFAULT_POSITION, 
                 UIManager.SUBTITLE_FONT, Color.WHITE));
         commsPanel.setOpaque(false);
+        commsPanel.setBounds(5, 50, 130, 40);
+        getContentPane().add(commsPanel);
     }
 
     /**
@@ -155,7 +229,7 @@ public class Tank extends javax.swing.JFrame implements Observer{
         lblFuel = new javax.swing.JLabel();
         lblBackground = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblArea.setFont(lblArea.getFont().deriveFont(lblArea.getFont().getStyle() | java.awt.Font.BOLD, 13));

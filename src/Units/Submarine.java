@@ -5,8 +5,15 @@
 package Units;
 import DesignPatern.Observable;
 import DesignPatern.Observer;
+import Utils.UIManager;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 /**
  *
@@ -25,9 +32,176 @@ public class Submarine extends javax.swing.JFrame implements Observer{
         
         control = Observable.getInstance();
         name = "Submarine";
-        setTitle("Submarine");
-        setLocation(50,500);
-        setResizable(false);
+        setTitle("Defence System - " + name);
+        // Change from EXIT_ON_CLOSE to DISPOSE_ON_CLOSE to work with launcher
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(true);
+        
+        // Set appropriate size to ensure all components remain visible
+        setSize(new Dimension(800, 500));
+        
+        // Apply modern UI styling
+        applyUIStyles();
+        
+        // Create panels for better organization
+        createPanels();
+        
+        // Improve text visibility
+        improveTextVisibility();
+        
+        // Optimize component layout for standard window size
+        optimizeComponentLayout();
+    }
+    
+    /**
+     * Apply consistent UI styling to components
+     */
+    private void applyUIStyles() {
+        // Style the background
+        getContentPane().setBackground(UIManager.BACKGROUND_DARK);
+        
+        // Style all buttons with better visibility
+        UIManager.styleButton(btnShoot);
+        UIManager.styleButton(btnSonar);
+        UIManager.styleButton(btnTomahawk);
+        UIManager.styleButton(btnTrident);
+        UIManager.styleButton(btnSend);
+        
+        // Style the labels with better visibility
+        lblTitle.setFont(UIManager.TITLE_FONT);
+        lblTitle.setForeground(UIManager.TEXT_LIGHT);
+        
+        lblArea.setFont(UIManager.SUBTITLE_FONT);
+        lblArea.setForeground(UIManager.TEXT_LIGHT);
+        
+        lblFuel.setFont(UIManager.TEXT_FONT);
+        lblFuel.setForeground(UIManager.TEXT_LIGHT);
+        
+        lblSoldier.setFont(UIManager.TEXT_FONT);
+        lblSoldier.setForeground(UIManager.TEXT_LIGHT);
+        
+        lblAmmo.setFont(UIManager.TEXT_FONT);
+        lblAmmo.setForeground(UIManager.TEXT_LIGHT);
+        
+        lblOxygen.setFont(UIManager.TEXT_FONT);
+        lblOxygen.setForeground(UIManager.TEXT_LIGHT);
+        
+        // Style text components for better readability
+        UIManager.styleTextComponent(txtInBox);
+        UIManager.styleTextComponent(txtSendBox);
+        
+        // Style sliders
+        UIManager.styleSlider(sldrFuel);
+        UIManager.styleSlider(sldrOxygen);
+        
+        // Style checkbox
+        UIManager.styleCheckBox(chckPosition);
+        
+        // Add tooltips for better usability
+        btnShoot.setToolTipText("Fire conventional weapons");
+        btnSonar.setToolTipText("Activate sonar for detection");
+        btnTomahawk.setToolTipText("Launch Tomahawk cruise missile");
+        btnTrident.setToolTipText("Launch Trident-2 ballistic missile");
+        btnSend.setToolTipText("Send message to command center");
+        sldrFuel.setToolTipText("Current fuel level");
+        sldrOxygen.setToolTipText("Current oxygen level");
+        spnrAmmo.setToolTipText("Available ammunition");
+        spnrSoldier.setToolTipText("Crew count");
+        chckPosition.setToolTipText("Toggle submarine position");
+    }
+    
+    /**
+     * Improve text visibility across components
+     */
+    private void improveTextVisibility() {
+        // Make button text black for better readability
+        btnShoot.setForeground(Color.BLACK);
+        btnSonar.setForeground(Color.BLACK);
+        btnTomahawk.setForeground(Color.BLACK);
+        btnTrident.setForeground(Color.BLACK);
+        btnSend.setForeground(Color.BLACK);
+        
+        // Ensure text areas have black text on light background
+        txtInBox.setForeground(Color.BLACK);
+        txtSendBox.setForeground(Color.BLACK);
+        
+        // Make checkbox text more visible
+        chckPosition.setForeground(Color.WHITE);
+        
+        // Make labels more visible with higher contrast
+        lblTitle.setForeground(Color.WHITE);
+        lblArea.setForeground(Color.WHITE);
+        lblSoldier.setForeground(Color.WHITE);
+        lblAmmo.setForeground(Color.WHITE);
+        lblFuel.setForeground(Color.WHITE);
+        
+        // Add borders to make areas more distinct
+        scrlInbox.setBorder(BorderFactory.createTitledBorder(
+                BorderFactory.createLineBorder(Color.WHITE, 1), 
+                "Communication Log", 
+                TitledBorder.DEFAULT_JUSTIFICATION, 
+                TitledBorder.DEFAULT_POSITION,
+                new Font("Segoe UI", Font.BOLD, 12),
+                Color.WHITE));
+        
+        scrlSendBox.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+    }
+    
+    /**
+     * Optimize component layout for standard window size
+     */
+    private void optimizeComponentLayout() {
+        // Make the fuel and oxygen sliders more visible with better contrast
+        sldrFuel.setOpaque(false);
+        sldrFuel.setBackground(new Color(60, 63, 65, 150)); // Semi-transparent background
+        
+        sldrOxygen.setOpaque(false);
+        sldrOxygen.setBackground(new Color(60, 63, 65, 150)); // Semi-transparent background
+        
+        // Ensure button has sufficient size
+        btnSend.setPreferredSize(new Dimension(80, 30));
+        
+        // Make spinners more visible
+        spnrAmmo.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        spnrSoldier.setFont(new Font("Segoe UI", Font.BOLD, 12));
+    }
+    
+    /**
+     * Create panels to group related controls
+     */
+    private void createPanels() {
+        // Create weapons panel
+        JPanel weaponsPanel = new JPanel();
+        weaponsPanel.setBorder(BorderFactory.createTitledBorder(
+                UIManager.PANEL_BORDER, "Weapons Control", 
+                TitledBorder.DEFAULT_JUSTIFICATION, 
+                TitledBorder.DEFAULT_POSITION, 
+                UIManager.SUBTITLE_FONT, Color.WHITE));
+        weaponsPanel.setOpaque(false);
+        weaponsPanel.setBounds(5, 90, 310, 80);
+        getContentPane().add(weaponsPanel);
+        
+        // Create resources panel
+        JPanel resourcesPanel = new JPanel();
+        resourcesPanel.setBorder(BorderFactory.createTitledBorder(
+                UIManager.PANEL_BORDER, "Resources", 
+                TitledBorder.DEFAULT_JUSTIFICATION, 
+                TitledBorder.DEFAULT_POSITION, 
+                UIManager.SUBTITLE_FONT, Color.WHITE));
+        resourcesPanel.setOpaque(false);
+        resourcesPanel.setBounds(350, 60, 200, 100);
+        getContentPane().add(resourcesPanel);
+        
+        // Create status panel
+        JPanel statusPanel = new JPanel();
+        statusPanel.setBorder(BorderFactory.createTitledBorder(
+                UIManager.PANEL_BORDER, "Status", 
+                TitledBorder.DEFAULT_JUSTIFICATION, 
+                TitledBorder.DEFAULT_POSITION, 
+                UIManager.SUBTITLE_FONT, Color.WHITE));
+        statusPanel.setOpaque(false);
+        statusPanel.setBounds(5, 50, 130, 40);
+        getContentPane().add(statusPanel);
     }
 
     /**
@@ -62,7 +236,7 @@ public class Submarine extends javax.swing.JFrame implements Observer{
         lblOxygen = new javax.swing.JLabel();
         lblBackground = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblArea.setFont(lblArea.getFont().deriveFont(lblArea.getFont().getStyle() | java.awt.Font.BOLD, 13));

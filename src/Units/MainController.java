@@ -7,6 +7,8 @@ package Units;
 import DesignPatern.Observable;
 import Utils.UIManager;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -31,13 +33,71 @@ public class MainController extends javax.swing.JFrame {
         control = Observable.getInstance();
         name = "Main Controller";
         setTitle("Defence System - " + name);
+        // Change from EXIT_ON_CLOSE to DISPOSE_ON_CLOSE to work with launcher
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(true);
+        
+        // Set minimum size to ensure all components remain visible
+        setMinimumSize(new Dimension(710, 440));
 
         // Apply modern UI styling
         applyUIStyles();
 
         // Group related controls with panels for better organization
         createPanels();
+        
+        // Improve text color on controls for better visibility
+        improveTextVisibility();
+        
+        // Adjust component positions to ensure all are visible at the standard window size
+        optimizeComponentLayout();
+    }
+    
+    /**
+     * Improve text visibility across components
+     */
+    private void improveTextVisibility() {
+        // Make button text black for better readability
+        btnSend.setForeground(Color.BLACK);
+        btnInfo.setForeground(Color.BLACK);
+        
+        // Ensure text areas have black text on light background
+        txtInBox.setForeground(Color.BLACK);
+        txtSendBox.setForeground(Color.BLACK);
+        
+        // Make checkbox text more visible with larger, bolder font
+        Font checkboxFont = new Font("Segoe UI", Font.BOLD, 13);
+        chckArea.setFont(checkboxFont);
+        chckPvt.setFont(checkboxFont);
+        
+        // Make combo boxes text visible
+        cmbSend.setForeground(Color.BLACK);
+        cmbInfo.setForeground(Color.BLACK);
+        
+        // Make labels more visible with higher contrast
+        lblTitle.setForeground(Color.WHITE);
+        lblStrength.setForeground(Color.WHITE);
+    }
+    
+    /**
+     * Optimize component layout for better visibility in the standard window size
+     */
+    private void optimizeComponentLayout() {
+        // Adjust the scroll pane size for better visibility
+        scrlInbox.setPreferredSize(new Dimension(410, 160));
+        
+        // Make the send box more visible with contrasting border
+        scrlSendBox.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        
+        // Ensure buttons have sufficient size
+        btnSend.setPreferredSize(new Dimension(80, 30));
+        btnInfo.setPreferredSize(new Dimension(157, 30));
+        
+        // Make sliders more visible with contrasting ticks
+        sldrStrength.setPaintTicks(true);
+        sldrStrength.setPaintLabels(true);
+        sldrStrength.setMajorTickSpacing(20);
+        sldrStrength.setBackground(new Color(60, 63, 65, 150)); // Semi-transparent background
     }
 
     /**

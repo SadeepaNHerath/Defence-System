@@ -4,12 +4,8 @@
  */
 package Start;
 
-import DesignPatern.Observable;
-import Units.Helicopter;
-import Units.MainController;
-import Units.Submarine;
-import Units.Tank;
 import Utils.UIManager;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -21,28 +17,10 @@ public class Start {
         // Setup UI styling and look & feel
         UIManager.setupLookAndFeel();
         
-        Observable controller = Observable.getInstance();
-        
-        Tank tank = new Tank();
-        Helicopter heli = new Helicopter();
-        Submarine sub = new Submarine();
-        
-        controller.addUnit(tank);
-        controller.addUnit(heli);
-        controller.addUnit(sub);
-        
-        // Configure window positions for better organization
-        tank.setLocation(50, 100);
-        heli.setLocation(750, 100);
-        sub.setLocation(50, 550);
-        
-        tank.setVisible(true);
-        heli.setVisible(true);
-        sub.setVisible(true);
-        
-        MainController main = new MainController();
-        controller.addMain(main);
-        main.setLocation(750, 550);
-        main.setVisible(true);
+        // Launch the intro window with SwingUtilities to ensure proper EDT usage
+        SwingUtilities.invokeLater(() -> {
+            LauncherWindow launcher = new LauncherWindow();
+            launcher.setVisible(true);
+        });
     }
 }
