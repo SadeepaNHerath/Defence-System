@@ -3,10 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Units;
+
 import DesignPatern.Observable;
 import DesignPatern.Observer;
+import Utils.UIManager;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 /**
  *
@@ -17,7 +23,6 @@ public class Tank extends javax.swing.JFrame implements Observer{
     /**
      * Creates new form Tank
      */
-    
     private final String name;
     private final Observable control;
     
@@ -26,9 +31,98 @@ public class Tank extends javax.swing.JFrame implements Observer{
         
         control = Observable.getInstance();
         name = "Tank";
-        setTitle("Tank");
-        setLocation(1000,20);
+        setTitle("Defence System - " + name);
         setResizable(false);
+        
+        // Apply modern UI styling
+        applyUIStyles();
+        
+        // Create panels for better organization
+        createPanels();
+    }
+    
+    /**
+     * Apply consistent UI styling to components
+     */
+    private void applyUIStyles() {
+        // Style the background and overall appearance
+        getContentPane().setBackground(UIManager.BACKGROUND_DARK);
+        
+        // Style the buttons
+        UIManager.styleButton(btnShoot);
+        UIManager.styleButton(btnMissile);
+        UIManager.styleButton(btnRotate);
+        UIManager.styleButton(btnRedar);
+        UIManager.styleButton(btnSend);
+        
+        // Style the labels
+        lblTitle.setFont(UIManager.TITLE_FONT);
+        lblTitle.setForeground(UIManager.TEXT_LIGHT);
+        
+        lblArea.setFont(UIManager.SUBTITLE_FONT);
+        lblArea.setForeground(UIManager.TEXT_LIGHT);
+        
+        lblFuel.setFont(UIManager.TEXT_FONT);
+        lblFuel.setForeground(UIManager.TEXT_LIGHT);
+        
+        lblSoldier.setFont(UIManager.TEXT_FONT);
+        lblSoldier.setForeground(UIManager.TEXT_LIGHT);
+        
+        lblAmmo.setFont(UIManager.TEXT_FONT);
+        lblAmmo.setForeground(UIManager.TEXT_LIGHT);
+        
+        // Style text components
+        UIManager.styleTextComponent(txtInBox);
+        UIManager.styleTextComponent(txtSendBox);
+        
+        // Style slider
+        UIManager.styleSlider(sldrFuel);
+        
+        // Style checkbox
+        UIManager.styleCheckBox(chckPosition);
+        
+        // Add tooltips
+        btnShoot.setToolTipText("Fire standard ammunition");
+        btnMissile.setToolTipText("Launch a guided missile");
+        btnRotate.setToolTipText("Rotate the turret for directional firing");
+        btnRedar.setToolTipText("Activate radar to scan surroundings");
+        btnSend.setToolTipText("Send message to control center");
+        chckPosition.setToolTipText("Toggle tank position to enable operations");
+        sldrFuel.setToolTipText("Current fuel level");
+        spnrAmmo.setToolTipText("Ammunition count");
+        spnrSoldier.setToolTipText("Number of crew members");
+    }
+    
+    /**
+     * Create panels to group related controls
+     */
+    private void createPanels() {
+        // Create weapons panel
+        JPanel weaponsPanel = new JPanel();
+        weaponsPanel.setBorder(BorderFactory.createTitledBorder(
+                UIManager.PANEL_BORDER, "Weapons Control", 
+                TitledBorder.DEFAULT_JUSTIFICATION, 
+                TitledBorder.DEFAULT_POSITION, 
+                UIManager.SUBTITLE_FONT, Color.WHITE));
+        weaponsPanel.setOpaque(false);
+        
+        // Create resources panel
+        JPanel resourcesPanel = new JPanel();
+        resourcesPanel.setBorder(BorderFactory.createTitledBorder(
+                UIManager.PANEL_BORDER, "Resources", 
+                TitledBorder.DEFAULT_JUSTIFICATION, 
+                TitledBorder.DEFAULT_POSITION, 
+                UIManager.SUBTITLE_FONT, Color.WHITE));
+        resourcesPanel.setOpaque(false);
+        
+        // Create communications panel
+        JPanel commsPanel = new JPanel();
+        commsPanel.setBorder(BorderFactory.createTitledBorder(
+                UIManager.PANEL_BORDER, "Communications", 
+                TitledBorder.DEFAULT_JUSTIFICATION, 
+                TitledBorder.DEFAULT_POSITION, 
+                UIManager.SUBTITLE_FONT, Color.WHITE));
+        commsPanel.setOpaque(false);
     }
 
     /**
@@ -223,30 +317,22 @@ public class Tank extends javax.swing.JFrame implements Observer{
             btnSend.setEnabled(true);
         }else{
             btnSend.setEnabled(false);
-	}
+        }
     }//GEN-LAST:event_txtSendBoxKeyReleased
 
     private void txtSendBoxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSendBoxKeyTyped
-       if(!(txtSendBox.getText().equals(""))){
+        if(!(txtSendBox.getText().equals(""))){
             btnSend.setEnabled(true);
         }else{
             btnSend.setEnabled(false);
-	}
+        }
     }//GEN-LAST:event_txtSendBoxKeyTyped
-    
-    /**
-     *
-     * @param msg
-     */
+
     @Override
     public void getMsg(String msg){
         txtInBox.append("\n" + msg);
     }
     
-    /**
-     *
-     * @param bol
-     */
     @Override
     public void UpdateArea(Boolean bol){
         if (bol == true){
@@ -259,72 +345,44 @@ public class Tank extends javax.swing.JFrame implements Observer{
     @Override
     public void setButtons(int value){
         if (chckPosition.isSelected()){
-                if (value>=20){
-                    btnShoot.setEnabled(true);
-                }else{
-                    btnShoot.setEnabled(false);
-                }
-                if(value>=40){
-                    btnMissile.setEnabled(true);
-                }else{
-                    btnMissile.setEnabled(false);
-                }
-                if(value>=60){
-                    btnRedar.setEnabled(true);
-                }else{
-                    btnRedar.setEnabled(false);
-                }
-                if(value>=80){
-                    btnRotate.setEnabled(true);
-                }else{
-                    btnRotate.setEnabled(false);
-                }
+            if (value>=20){
+                btnShoot.setEnabled(true);
+            }else{
+                btnShoot.setEnabled(false);
+            }
+            if(value>=40){
+                btnMissile.setEnabled(true);
+            }else{
+                btnMissile.setEnabled(false);
+            }
+            if(value>=60){
+                btnRotate.setEnabled(true);
+            }else{
+                btnRotate.setEnabled(false);
+            }
+            if(value>=80){
+                btnRedar.setEnabled(true);
+            }else{
+                btnRedar.setEnabled(false);
+            }
         }else{
             btnShoot.setEnabled(false);
             btnMissile.setEnabled(false);
-            btnRedar.setEnabled(false);
             btnRotate.setEnabled(false);
+            btnRedar.setEnabled(false);
         }
     }
     
-    /**
-     *
-     * @return
-     */
     @Override
     public String getName(){
         return name;
     }
     
-    /**
-     *
-     * @param value
-     */
     @Override
     public void giveInfo(int value){
-        String btnInfo = "" ;
-        if (chckPosition.isSelected()){
-                if (value>=20){
-                    btnInfo += "Shooting Button Available.. \n";
-                }
-                if(value>=40){
-                    btnInfo += "Missile Operation Available.. \n";
-                }
-                if(value>=60){
-                   btnInfo += "Redar Operation Available.. \n";
-                }
-                if(value>=80){
-                   btnInfo += "Rotating Available.. \n";
-                }
-        }
-                
-        String count = "Soldier Count : " + spnrSoldier.getValue() +"\nAmmo Count :" + spnrAmmo.getValue() + "\nFuel Availability : " + sldrFuel.getValue() + "\n" ;
-        JOptionPane.showMessageDialog(null, (count + btnInfo) , " Tank ", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Fuel = " + sldrFuel.getValue() + "%\nSoldier Count = " + spnrSoldier.getValue() + "\nAmmo Count = " + spnrAmmo.getValue());
     }
     
-    
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMissile;
     private javax.swing.JButton btnRedar;
