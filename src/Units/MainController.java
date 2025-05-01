@@ -195,16 +195,16 @@ public class MainController extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cmbSend.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        cmbSend.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Select Defence", "Submarine", "Tank", "Helicopter"}));
+        cmbSend.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Defence", "Submarine", "Tank", "Helicopter" }));
         cmbSend.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbSendActionPerformed(evt);
             }
         });
-        getContentPane().add(cmbSend, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 150, -1));
+        getContentPane().add(cmbSend, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 150, -1));
 
         cmbInfo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        cmbInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Select Defence", "Submarine", "Tank", "Helicopter"}));
+        cmbInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Defence", "Submarine", "Tank", "Helicopter" }));
         cmbInfo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbInfoItemStateChanged(evt);
@@ -215,7 +215,7 @@ public class MainController extends javax.swing.JFrame {
                 cmbInfoActionPerformed(evt);
             }
         });
-        getContentPane().add(cmbInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, -1, -1));
+        getContentPane().add(cmbInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, -1, -1));
 
         btnInfo.setEnabled(false);
         btnInfo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -225,12 +225,12 @@ public class MainController extends javax.swing.JFrame {
                 btnInfoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 70, 157, -1));
+        getContentPane().add(btnInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 100, 157, -1));
 
         lblStrength.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         lblStrength.setForeground(new java.awt.Color(255, 255, 255));
         lblStrength.setText("Strength");
-        getContentPane().add(lblStrength, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, 126, -1));
+        getContentPane().add(lblStrength, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, 126, -1));
 
         sldrStrength.setOpaque(false);
         sldrStrength.setBackground(new java.awt.Color(255, 255, 255));
@@ -246,7 +246,7 @@ public class MainController extends javax.swing.JFrame {
                 sldrStrengthStateChanged(evt);
             }
         });
-        getContentPane().add(sldrStrength, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, 301, -1));
+        getContentPane().add(sldrStrength, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, 301, -1));
 
         txtInBox.setEditable(false);
         txtInBox.setColumns(20);
@@ -254,24 +254,22 @@ public class MainController extends javax.swing.JFrame {
         txtInBox.setRows(5);
         scrlInbox.setViewportView(txtInBox);
 
-        getContentPane().add(scrlInbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 410, 170));
+        getContentPane().add(scrlInbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 410, 170));
 
         txtSendBox.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtSendBoxKeyPressed(evt);
             }
-
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtSendBoxKeyReleased(evt);
             }
-
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtSendBoxKeyTyped(evt);
             }
         });
         scrlSendBox.setViewportView(txtSendBox);
 
-        getContentPane().add(scrlSendBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 330, 40));
+        getContentPane().add(scrlSendBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 330, 40));
 
         chckArea.setOpaque(false);
         chckArea.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -282,7 +280,7 @@ public class MainController extends javax.swing.JFrame {
                 chckAreaActionPerformed(evt);
             }
         });
-        getContentPane().add(chckArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, -1, -1));
+        getContentPane().add(chckArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, -1, -1));
 
         btnSend.setEnabled(false);
         btnSend.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -292,7 +290,7 @@ public class MainController extends javax.swing.JFrame {
                 btnSendActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSend, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, -1, -1));
+        getContentPane().add(btnSend, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 350, -1, -1));
 
         chckPvt.setOpaque(false);
         chckPvt.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -304,7 +302,7 @@ public class MainController extends javax.swing.JFrame {
                 chckPvtActionPerformed(evt);
             }
         });
-        getContentPane().add(chckPvt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, -1, -1));
+        getContentPane().add(chckPvt, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, -1));
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
@@ -319,10 +317,10 @@ public class MainController extends javax.swing.JFrame {
         lblTitleBack.setToolTipText("");
         lblTitleBack.setMinimumSize(new java.awt.Dimension(300, 980));
         lblTitleBack.setPreferredSize(new java.awt.Dimension(300, 980));
-        getContentPane().add(lblTitleBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 40));
+        getContentPane().add(lblTitleBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 40));
 
         txt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/main.jpg"))); // NOI18N
-        getContentPane().add(txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 770, 400));
+        getContentPane().add(txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 790, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

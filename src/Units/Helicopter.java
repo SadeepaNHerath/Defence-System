@@ -41,10 +41,10 @@ public class Helicopter extends javax.swing.JFrame implements Observer{
         // Set appropriate size to ensure all components remain visible
         setSize(new Dimension(800, 500));
         
-        // Apply modern UI styling
+        // Apply modern UI styling first
         applyUIStyles();
         
-        // Create panels for better organization
+        // Create panels before updating other UI elements
         createPanels();
         
         // Improve text visibility
@@ -168,8 +168,8 @@ public class Helicopter extends javax.swing.JFrame implements Observer{
                 TitledBorder.DEFAULT_POSITION, 
                 UIManager.SUBTITLE_FONT, Color.WHITE));
         weaponsPanel.setOpaque(false);
-        weaponsPanel.setBounds(5, 90, 290, 80);
-        getContentPane().add(weaponsPanel);
+        // Use AbsoluteConstraints when adding to AbsoluteLayout
+        getContentPane().add(weaponsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 90, 290, 80));
         
         // Create resources panel
         JPanel resourcesPanel = new JPanel();
@@ -179,8 +179,8 @@ public class Helicopter extends javax.swing.JFrame implements Observer{
                 TitledBorder.DEFAULT_POSITION, 
                 UIManager.SUBTITLE_FONT, Color.WHITE));
         resourcesPanel.setOpaque(false);
-        resourcesPanel.setBounds(430, 60, 210, 100);
-        getContentPane().add(resourcesPanel);
+        // Use AbsoluteConstraints when adding to AbsoluteLayout
+        getContentPane().add(resourcesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, 210, 100));
         
         // Create status panel
         JPanel statusPanel = new JPanel();
@@ -190,8 +190,8 @@ public class Helicopter extends javax.swing.JFrame implements Observer{
                 TitledBorder.DEFAULT_POSITION, 
                 UIManager.SUBTITLE_FONT, Color.WHITE));
         statusPanel.setOpaque(false);
-        statusPanel.setBounds(5, 50, 128, 40);
-        getContentPane().add(statusPanel);
+        // Use AbsoluteConstraints when adding to AbsoluteLayout
+        getContentPane().add(statusPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 50, 128, 40));
     }
 
     /**
@@ -223,29 +223,29 @@ public class Helicopter extends javax.swing.JFrame implements Observer{
         lblFuel = new javax.swing.JLabel();
         lblBackground = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblArea.setFont(lblArea.getFont().deriveFont(lblArea.getFont().getStyle() | java.awt.Font.BOLD, 13));
         lblArea.setForeground(new java.awt.Color(255, 255, 255));
         lblArea.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblArea.setText("Area Not Cleared");
-        getContentPane().add(lblArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 128, 29));
+        getContentPane().add(lblArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 128, 29));
 
         btnShoot.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnShoot.setText("Shoot");
         btnShoot.setEnabled(false);
-        getContentPane().add(btnShoot, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 130, -1));
+        getContentPane().add(btnShoot, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 130, -1));
 
         btnMissile.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnMissile.setText("Missile Operation");
         btnMissile.setEnabled(false);
-        getContentPane().add(btnMissile, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 140, -1));
+        getContentPane().add(btnMissile, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 140, -1));
 
         btnLaser.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnLaser.setText("Laser Operation");
         btnLaser.setEnabled(false);
-        getContentPane().add(btnLaser, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 140, -1));
+        getContentPane().add(btnLaser, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 140, -1));
 
         txtInBox.setEditable(false);
         txtInBox.setBackground(new java.awt.Color(242, 242, 242));
@@ -254,7 +254,7 @@ public class Helicopter extends javax.swing.JFrame implements Observer{
         txtInBox.setRows(5);
         scrlInbox.setViewportView(txtInBox);
 
-        getContentPane().add(scrlInbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 620, 139));
+        getContentPane().add(scrlInbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 620, 139));
 
         txtSendBox.setBackground(new java.awt.Color(242, 242, 242));
         txtSendBox.setColumns(20);
@@ -273,7 +273,7 @@ public class Helicopter extends javax.swing.JFrame implements Observer{
         });
         scrlSent1.setViewportView(txtSendBox);
 
-        getContentPane().add(scrlSent1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 520, 30));
+        getContentPane().add(scrlSent1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 520, 30));
 
         btnSend.setEnabled(false);
         btnSend.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -284,25 +284,25 @@ public class Helicopter extends javax.swing.JFrame implements Observer{
                 btnSendActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSend, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 360, 81, 30));
+        getContentPane().add(btnSend, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 390, 81, 30));
 
         lblSoldier.setFont(lblSoldier.getFont().deriveFont(lblSoldier.getFont().getStyle() | java.awt.Font.BOLD, 13));
         lblSoldier.setForeground(new java.awt.Color(255, 255, 255));
         lblSoldier.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSoldier.setText("Soldier Count");
-        getContentPane().add(lblSoldier, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 123, 29));
+        getContentPane().add(lblSoldier, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 123, 29));
 
         lblAmmo.setFont(lblAmmo.getFont().deriveFont(lblAmmo.getFont().getStyle() | java.awt.Font.BOLD, 13));
         lblAmmo.setForeground(new java.awt.Color(255, 255, 255));
         lblAmmo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAmmo.setText("Ammo Count");
-        getContentPane().add(lblAmmo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 110, 123, 29));
+        getContentPane().add(lblAmmo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 123, 29));
 
         spnrSoldier.setValue(10);
-        getContentPane().add(spnrSoldier, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, 70, -1));
+        getContentPane().add(spnrSoldier, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, 70, -1));
 
         spnrAmmo.setValue(50);
-        getContentPane().add(spnrAmmo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 70, -1));
+        getContentPane().add(spnrAmmo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 140, 70, -1));
 
         sldrFuel.setOpaque(false);
         sldrFuel.setBackground(new java.awt.Color(255, 255, 255));
@@ -313,7 +313,7 @@ public class Helicopter extends javax.swing.JFrame implements Observer{
         sldrFuel.setPaintLabels(true);
         sldrFuel.setPaintTicks(true);
         sldrFuel.setValue(100);
-        getContentPane().add(sldrFuel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 70, -1, 340));
+        getContentPane().add(sldrFuel, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, -1, 340));
 
         chckPosition.setOpaque(false);
         chckPosition.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -324,7 +324,7 @@ public class Helicopter extends javax.swing.JFrame implements Observer{
                 chckPositionActionPerformed(evt);
             }
         });
-        getContentPane().add(chckPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, -1, -1));
+        getContentPane().add(chckPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 200, -1, -1));
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
@@ -339,15 +339,15 @@ public class Helicopter extends javax.swing.JFrame implements Observer{
         lblTitleBack.setToolTipText("");
         lblTitleBack.setMinimumSize(new java.awt.Dimension(300, 980));
         lblTitleBack.setPreferredSize(new java.awt.Dimension(300, 980));
-        getContentPane().add(lblTitleBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 40));
+        getContentPane().add(lblTitleBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 40));
 
         lblFuel.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         lblFuel.setForeground(new java.awt.Color(255, 255, 255));
         lblFuel.setText("Fuel ⛽");
-        getContentPane().add(lblFuel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 50, 50, 20));
+        getContentPane().add(lblFuel, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 70, 50, 20));
 
         lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/helicopter.jpg"))); // NOI18N
-        getContentPane().add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(-240, 40, 950, 390));
+        getContentPane().add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(-240, 40, 1030, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

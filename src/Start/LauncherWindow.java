@@ -11,7 +11,6 @@ import Units.Tank;
 import Utils.UIManager;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
 import java.net.URL;
 import javax.swing.*;
 import javax.swing.border.LineBorder;

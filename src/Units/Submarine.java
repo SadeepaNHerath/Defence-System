@@ -40,10 +40,10 @@ public class Submarine extends javax.swing.JFrame implements Observer{
         // Set appropriate size to ensure all components remain visible
         setSize(new Dimension(800, 500));
         
-        // Apply modern UI styling
+        // Apply modern UI styling first
         applyUIStyles();
         
-        // Create panels for better organization
+        // Create panels before updating other UI elements
         createPanels();
         
         // Improve text visibility
@@ -178,8 +178,8 @@ public class Submarine extends javax.swing.JFrame implements Observer{
                 TitledBorder.DEFAULT_POSITION, 
                 UIManager.SUBTITLE_FONT, Color.WHITE));
         weaponsPanel.setOpaque(false);
-        weaponsPanel.setBounds(5, 90, 310, 80);
-        getContentPane().add(weaponsPanel);
+        // Use AbsoluteConstraints when adding to AbsoluteLayout
+        getContentPane().add(weaponsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 90, 310, 80));
         
         // Create resources panel
         JPanel resourcesPanel = new JPanel();
@@ -189,8 +189,8 @@ public class Submarine extends javax.swing.JFrame implements Observer{
                 TitledBorder.DEFAULT_POSITION, 
                 UIManager.SUBTITLE_FONT, Color.WHITE));
         resourcesPanel.setOpaque(false);
-        resourcesPanel.setBounds(350, 60, 200, 100);
-        getContentPane().add(resourcesPanel);
+        // Use AbsoluteConstraints when adding to AbsoluteLayout
+        getContentPane().add(resourcesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 200, 100));
         
         // Create status panel
         JPanel statusPanel = new JPanel();
@@ -200,8 +200,8 @@ public class Submarine extends javax.swing.JFrame implements Observer{
                 TitledBorder.DEFAULT_POSITION, 
                 UIManager.SUBTITLE_FONT, Color.WHITE));
         statusPanel.setOpaque(false);
-        statusPanel.setBounds(5, 50, 130, 40);
-        getContentPane().add(statusPanel);
+        // Use AbsoluteConstraints when adding to AbsoluteLayout
+        getContentPane().add(statusPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 50, 130, 40));
     }
 
     /**
@@ -236,34 +236,34 @@ public class Submarine extends javax.swing.JFrame implements Observer{
         lblOxygen = new javax.swing.JLabel();
         lblBackground = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblArea.setFont(lblArea.getFont().deriveFont(lblArea.getFont().getStyle() | java.awt.Font.BOLD, 13));
         lblArea.setForeground(new java.awt.Color(255, 255, 255));
         lblArea.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblArea.setText("Area Not Cleared");
-        getContentPane().add(lblArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 128, 29));
+        getContentPane().add(lblArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 128, 29));
 
         btnShoot.setEnabled(false);
         btnShoot.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnShoot.setText("Shoot");
-        getContentPane().add(btnShoot, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 150, -1));
+        getContentPane().add(btnShoot, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 150, -1));
 
         btnSonar.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnSonar.setText("Sonar Operation");
         btnSonar.setEnabled(false);
-        getContentPane().add(btnSonar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 140, -1));
+        getContentPane().add(btnSonar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 140, -1));
 
         btnTomahawk.setEnabled(false);
         btnTomahawk.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnTomahawk.setText("Tomahawk Missile");
-        getContentPane().add(btnTomahawk, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 150, -1));
+        getContentPane().add(btnTomahawk, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 150, -1));
 
         btnTrident.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnTrident.setText("Trident-2 Missile");
         btnTrident.setEnabled(false);
-        getContentPane().add(btnTrident, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 140, -1));
+        getContentPane().add(btnTrident, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 140, -1));
 
         txtInBox.setEditable(false);
         txtInBox.setBackground(new java.awt.Color(242, 242, 242));
@@ -272,7 +272,7 @@ public class Submarine extends javax.swing.JFrame implements Observer{
         txtInBox.setRows(5);
         scrlInbox.setViewportView(txtInBox);
 
-        getContentPane().add(scrlInbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 560, 139));
+        getContentPane().add(scrlInbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 560, 139));
 
         txtSendBox.setBackground(new java.awt.Color(242, 242, 242));
         txtSendBox.setColumns(20);
@@ -291,7 +291,7 @@ public class Submarine extends javax.swing.JFrame implements Observer{
         });
         scrlSendBox.setViewportView(txtSendBox);
 
-        getContentPane().add(scrlSendBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 470, 30));
+        getContentPane().add(scrlSendBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 470, 30));
 
         btnSend.setEnabled(false);
         btnSend.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -302,25 +302,25 @@ public class Submarine extends javax.swing.JFrame implements Observer{
                 btnSendActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSend, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 360, 70, 30));
+        getContentPane().add(btnSend, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 390, 70, 30));
 
         lblSoldier.setFont(lblSoldier.getFont().deriveFont(lblSoldier.getFont().getStyle() | java.awt.Font.BOLD, 13));
         lblSoldier.setForeground(new java.awt.Color(255, 255, 255));
         lblSoldier.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSoldier.setText("Soldier Count");
-        getContentPane().add(lblSoldier, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 123, 29));
+        getContentPane().add(lblSoldier, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 123, 29));
 
         lblAmmo.setFont(lblAmmo.getFont().deriveFont(lblAmmo.getFont().getStyle() | java.awt.Font.BOLD, 13));
         lblAmmo.setForeground(new java.awt.Color(255, 255, 255));
         lblAmmo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAmmo.setText("Ammo Count");
-        getContentPane().add(lblAmmo, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 123, 29));
+        getContentPane().add(lblAmmo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 123, 29));
 
         spnrSoldier.setValue(10);
-        getContentPane().add(spnrSoldier, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 70, -1));
+        getContentPane().add(spnrSoldier, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 70, -1));
 
         spnrAmmo.setValue(50);
-        getContentPane().add(spnrAmmo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 70, -1));
+        getContentPane().add(spnrAmmo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, 70, -1));
 
         sldrFuel.setOpaque(false);
         sldrFuel.setBackground(new java.awt.Color(255, 255, 255));
@@ -331,7 +331,7 @@ public class Submarine extends javax.swing.JFrame implements Observer{
         sldrFuel.setPaintLabels(true);
         sldrFuel.setPaintTicks(true);
         sldrFuel.setValue(100);
-        getContentPane().add(sldrFuel, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, -1, 340));
+        getContentPane().add(sldrFuel, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, -1, 340));
 
         chckPosition.setOpaque(false);
         chckPosition.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -342,7 +342,7 @@ public class Submarine extends javax.swing.JFrame implements Observer{
                 chckPositionActionPerformed(evt);
             }
         });
-        getContentPane().add(chckPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, -1, -1));
+        getContentPane().add(chckPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, -1, -1));
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
@@ -357,12 +357,12 @@ public class Submarine extends javax.swing.JFrame implements Observer{
         lblTitleBack.setToolTipText("");
         lblTitleBack.setMinimumSize(new java.awt.Dimension(300, 980));
         lblTitleBack.setPreferredSize(new java.awt.Dimension(300, 980));
-        getContentPane().add(lblTitleBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 40));
+        getContentPane().add(lblTitleBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 40));
 
         lblFuel.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         lblFuel.setForeground(new java.awt.Color(255, 255, 255));
         lblFuel.setText("Fuel ⛽");
-        getContentPane().add(lblFuel, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, 50, 20));
+        getContentPane().add(lblFuel, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 50, 20));
 
         sldrOxygen.setOpaque(false);
         sldrOxygen.setBackground(new java.awt.Color(255, 255, 255));
@@ -373,15 +373,15 @@ public class Submarine extends javax.swing.JFrame implements Observer{
         sldrOxygen.setPaintLabels(true);
         sldrOxygen.setPaintTicks(true);
         sldrOxygen.setValue(100);
-        getContentPane().add(sldrOxygen, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 80, -1, 340));
+        getContentPane().add(sldrOxygen, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 110, -1, 340));
 
         lblOxygen.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         lblOxygen.setForeground(new java.awt.Color(255, 255, 255));
         lblOxygen.setText("Oxygen");
-        getContentPane().add(lblOxygen, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 50, 20));
+        getContentPane().add(lblOxygen, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 80, 50, 20));
 
         lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/subMarine.jpg"))); // NOI18N
-        getContentPane().add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 430));
+        getContentPane().add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 540));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

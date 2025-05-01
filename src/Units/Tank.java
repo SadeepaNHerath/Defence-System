@@ -41,10 +41,10 @@ public class Tank extends javax.swing.JFrame implements Observer{
         // Set appropriate size to ensure all components remain visible
         setSize(new Dimension(800, 500));
         
-        // Apply modern UI styling
+        // Apply modern UI styling first
         applyUIStyles();
         
-        // Create panels for better organization
+        // Create panels before updating other UI elements
         createPanels();
         
         // Improve text visibility
@@ -173,8 +173,8 @@ public class Tank extends javax.swing.JFrame implements Observer{
                 TitledBorder.DEFAULT_POSITION, 
                 UIManager.SUBTITLE_FONT, Color.WHITE));
         weaponsPanel.setOpaque(false);
-        weaponsPanel.setBounds(5, 90, 310, 80);
-        getContentPane().add(weaponsPanel);
+        // Use AbsoluteConstraints when adding to AbsoluteLayout
+        getContentPane().add(weaponsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 90, 310, 80));
         
         // Create resources panel
         JPanel resourcesPanel = new JPanel();
@@ -184,10 +184,10 @@ public class Tank extends javax.swing.JFrame implements Observer{
                 TitledBorder.DEFAULT_POSITION, 
                 UIManager.SUBTITLE_FONT, Color.WHITE));
         resourcesPanel.setOpaque(false);
-        resourcesPanel.setBounds(420, 60, 200, 100);
-        getContentPane().add(resourcesPanel);
+        // Use AbsoluteConstraints when adding to AbsoluteLayout
+        getContentPane().add(resourcesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, 200, 100));
         
-        // Create communications panel
+        // Create status panel
         JPanel commsPanel = new JPanel();
         commsPanel.setBorder(BorderFactory.createTitledBorder(
                 UIManager.PANEL_BORDER, "Status", 
@@ -195,8 +195,8 @@ public class Tank extends javax.swing.JFrame implements Observer{
                 TitledBorder.DEFAULT_POSITION, 
                 UIManager.SUBTITLE_FONT, Color.WHITE));
         commsPanel.setOpaque(false);
-        commsPanel.setBounds(5, 50, 130, 40);
-        getContentPane().add(commsPanel);
+        // Use AbsoluteConstraints when adding to AbsoluteLayout
+        getContentPane().add(commsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 50, 130, 40));
     }
 
     /**
@@ -229,7 +229,7 @@ public class Tank extends javax.swing.JFrame implements Observer{
         lblFuel = new javax.swing.JLabel();
         lblBackground = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblArea.setFont(lblArea.getFont().deriveFont(lblArea.getFont().getStyle() | java.awt.Font.BOLD, 13));
@@ -350,7 +350,7 @@ public class Tank extends javax.swing.JFrame implements Observer{
         lblTitleBack.setToolTipText("");
         lblTitleBack.setMinimumSize(new java.awt.Dimension(300, 980));
         lblTitleBack.setPreferredSize(new java.awt.Dimension(300, 980));
-        getContentPane().add(lblTitleBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 690, 50));
+        getContentPane().add(lblTitleBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 790, 50));
 
         lblFuel.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         lblFuel.setForeground(new java.awt.Color(255, 255, 255));
@@ -358,7 +358,7 @@ public class Tank extends javax.swing.JFrame implements Observer{
         getContentPane().add(lblFuel, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 50, 50, 20));
 
         lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/tank.jpg"))); // NOI18N
-        getContentPane().add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(-250, -30, 940, 460));
+        getContentPane().add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(-250, -30, 1040, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
